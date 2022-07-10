@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/normalize.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/skeleton.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/custom.css') }}">
+    <title>mental</title>
+</head>
+
+<body>
+    <div class="container">
+        
+        <div class="row">
+            <div class="twelve column mt-2"><h1 class="center mt-2">mental</h1></div>
+        </div>
+        
+        <div class="row">
+            <div class="twelve column mt-2 p2">
+                <form action="/proc" method="POST" class="mb-0">
+                    <label for="message">message :</label>
+                    <textarea class="u-min-100 u-full-width u-max-full-width lowercase" rows="50" placeholder="Hi Dave …" id="message" name="message"></textarea>
+                    <input class="button-primary" type="submit" value="submit">
+                </form>
+            </div>
+        </div>
+        {% for message in messages %}
+        <div class="row">
+            <div class="twelve column mt-2 p2">
+                <h6 class="mb-0 lowercase bold underline">{{(message.created_at).strftime("%-d %B %Y at %I:%M %p")}}</h6>
+                <p class="mb-0 lowercase">{{message.message}}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>    
+</body>
+
